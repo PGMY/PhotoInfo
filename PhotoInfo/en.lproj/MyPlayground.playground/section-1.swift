@@ -1,6 +1,8 @@
 // Playground - noun: a place where people can play
 
 import UIKit
+import AssetsLibrary
+
 
 // http://qiita.com/hachinobu/items/d591d0cba23b6dfec559
 // immutableなString型の配列
@@ -44,3 +46,41 @@ sort(programLang) { $0 < $1 } // [Java, JavaScript, Objective-C, PHP, Python, Ru
 programLang.count
 
 programLang
+
+let key :Int = 1
+var arr:Array<Dictionary<Int,String>> = []
+arr.append([1:"ONE", 2:"TWO"])
+arr.append([1:"TRE", 2:"FOR"])
+
+//arr
+//sort(arr){$0[key] > $1[key] }
+//
+//arr
+
+
+//ALAssetsGroupType(ALAssetsGroupAll)
+
+
+var testArr:Array<Dictionary<Int,AnyObject>> = [[0: "ZERO1", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO2", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO3", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO4", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"]]
+
+for test:Dictionary<Int,AnyObject> in testArr {
+    let td: NSDictionary = test
+    let t:String! = td[0] as String
+    println(t)
+}
+
+
+var testDict : Dictionary<String,Array<String>> = ["A":["a","b","c"],"B":["a","b","c"],"C":["a","b","c"]]
+var dcitD:Array<String> = ["A","B","C"]
+testDict["D"] = dcitD
+
+testDict
+
+
+
+
+
+
+
+
+
