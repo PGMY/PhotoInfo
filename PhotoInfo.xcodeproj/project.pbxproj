@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4018B70D195D612A00D03184 /* AssetsAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018B70C195D612A00D03184 /* AssetsAccessor.swift */; };
-		405B2BFB196A7DD6007141CE /* 日本語.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405B2BFA196A7DD6007141CE /* 日本語.swift */; };
 		405E48CA195D28350036B5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405E48C9195D28350036B5B1 /* AppDelegate.swift */; };
 		405E48CC195D28350036B5B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 405E48CB195D28350036B5B1 /* Images.xcassets */; };
 		405E48D8195D28350036B5B1 /* PhotoInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405E48D7195D28350036B5B1 /* PhotoInfoTests.swift */; };
@@ -29,7 +28,6 @@
 /* Begin PBXFileReference section */
 		40144A6919651A2F003C6F59 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = en; path = en.lproj/MyPlayground.playground; sourceTree = "<group>"; };
 		4018B70C195D612A00D03184 /* AssetsAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsAccessor.swift; sourceTree = "<group>"; };
-		405B2BFA196A7DD6007141CE /* 日本語.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "日本語.swift"; sourceTree = "<group>"; };
 		405E48C4195D28350036B5B1 /* PhotoInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		405E48C8195D28350036B5B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		405E48C9195D28350036B5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 				405E48E4195D2CD40036B5B1 /* DateViewController.swift */,
 				4018B70C195D612A00D03184 /* AssetsAccessor.swift */,
 				40144A6A19651A2F003C6F59 /* MyPlayground.playground */,
-				405B2BFA196A7DD6007141CE /* 日本語.swift */,
 				405E48CB195D28350036B5B1 /* Images.xcassets */,
 				405E48C7195D28350036B5B1 /* Supporting Files */,
 			);
@@ -218,7 +215,6 @@
 				405E48E5195D2CD40036B5B1 /* DateViewController.swift in Sources */,
 				4018B70D195D612A00D03184 /* AssetsAccessor.swift in Sources */,
 				405E48CA195D28350036B5B1 /* AppDelegate.swift in Sources */,
-				405B2BFB196A7DD6007141CE /* 日本語.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +333,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = PhotoInfo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -15,8 +15,8 @@ class DateViewController: UICollectionViewController {
     let DATE :Int = 1
     let DATE_STR :Int = 2
     //
-    var sectionList:Array<String> = Array<String>()
-    var assetsData:Dictionary<String,Array<ALAsset>> = Dictionary<String,Array<ALAsset>>()
+    var sectionList:[String] = [String]()
+    var assetsData:[String:[ALAsset]] = [String:[ALAsset]]()
     
 //    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle!) {
 //        super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
@@ -58,10 +58,10 @@ class DateViewController: UICollectionViewController {
 //        println(ALAssetsGroupAll)
 //        let assetsGroupType :ALAssetsGroupType! = ALAssetsGroupType(0xFFFFFFFF)
 //        ALAssetsGroupAlbum
-        let assetsGroupType :ALAssetsGroupType!  = ALAssetsGroupType(ALAssetsGroupAll)//(ALAssetsGroupAlbum) | Int(ALAssetsGroupEvent) | Int(ALAssetsGroupFaces) | Int(ALAssetsGroupSavedPhotos);
+        let assetsGroupType :ALAssetsGroupType!  = ALAssetsGroupType(ALAssetsGroupAlbum|ALAssetsGroupEvent|ALAssetsGroupFaces|ALAssetsGroupSavedPhotos)//(ALAssetsGroupAlbum) | Int(ALAssetsGroupEvent) | Int(ALAssetsGroupFaces) | Int(ALAssetsGroupSavedPhotos);
         
         //
-        var allAssets: Array<Dictionary<Int,AnyObject>> = []
+        var allAssets: [[Int:AnyObject]] = [[Int:AnyObject]]()
         
         // Date Format
         var fomatter = NSDateFormatter()
@@ -97,11 +97,13 @@ class DateViewController: UICollectionViewController {
                     if self.assetsData[dateStr] {
                         var asstsArr:Array<ALAsset> = self.assetsData[dateStr]!
                         asstsArr.append(anAsset[self.ASSET] as ALAsset)
+//                        asstsArr[asstsArr.count] = anAsset[self.ASSET] as ALAsset
                         self.assetsData[dateStr] = asstsArr
                     } else {
                         var sectionArray:Array<ALAsset> = []
                         sectionArray.append(anAsset[self.ASSET] as ALAsset)
                         self.assetsData[dateStr] = sectionArray
+//                        self.sectionList[self.sectionList.count] = dateStr
                         self.sectionList.append(dateStr)
                     }
 
