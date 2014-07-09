@@ -56,34 +56,40 @@ class DateViewController: UICollectionViewController {
     func setupAssetsLibrary () {
         // Asset Group Type
 //        println(ALAssetsGroupAll)
-        let assetsGroupType :ALAssetsGroupType! = ALAssetsGroupType(0xFFFFFFFF)
-//        let assetsGroupType = ALAssetsGroupAll;//(ALAssetsGroupAlbum) | Int(ALAssetsGroupEvent) | Int(ALAssetsGroupFaces) | Int(ALAssetsGroupSavedPhotos);
+//        let assetsGroupType :ALAssetsGroupType! = ALAssetsGroupType(0xFFFFFFFF)
+//        ALAssetsGroupAlbum
+        let assetsGroupType :ALAssetsGroupType!  = ALAssetsGroupType(ALAssetsGroupAll)//(ALAssetsGroupAlbum) | Int(ALAssetsGroupEvent) | Int(ALAssetsGroupFaces) | Int(ALAssetsGroupSavedPhotos);
+        
+        //
+        var allAssets: Array<Dictionary<Int,AnyObject>> = []
         
         // Date Format
         var fomatter = NSDateFormatter()
         fomatter.dateFormat = "yyyy/MM/dd"
         
-        //
-        var allAssets: Array<Dictionary<Int,AnyObject>> = []
-        
-        var groupResultBlock : ALAssetsGroupEnumerationResultsBlock = { (asset: ALAsset!, index: Int, stop:CMutablePointer<ObjCBool>) -> Void in
+        var groupResultBlock : ALAssetsGroupEnumerationResultsBlock = { (asset: ALAsset!, index: Int, stop:UnsafePointer<ObjCBool>) -> Void in
             if asset {
                 let assetDate: NSDate = asset.valueForProperty(ALAssetPropertyDate) as NSDate
                 let assetDateStr: String = fomatter.stringFromDate(assetDate) as String
                 allAssets.append([self.ASSET:asset, self.DATE:assetDate, self.DATE_STR:assetDateStr])
             }
         }
-//        AssetsAccessor
-        var resultBlock : ALAssetsLibraryGroupsEnumerationResultsBlock = { (assetsGroup:ALAssetsGroup!, stop: CMutablePointer<ObjCBool>) -> Void in
+        
+        var resultBlock : ALAssetsLibraryGroupsEnumerationResultsBlock = { (assetsGroup:ALAssetsGroup!, stop: UnsafePointer<ObjCBool>) -> Void in
             let onlyPhotosFilter: ALAssetsFilter = ALAssetsFilter.allPhotos()
-//            if ( assetsGroup != nil ){
             if assetsGroup {
                 assetsGroup.setAssetsFilter( onlyPhotosFilter )
                 if assetsGroup.numberOfAssets() > 0 {
                     assetsGroup.enumerateAssetsUsingBlock(groupResultBlock)
                 }
             } else {
-                sort( allAssets ){ $0[self.DATE_STR] as String > $1[self.DATE_STR] as String }
+                sort( &allAssets ){
+                    (a:Dictionary, b:Dictionary) -> Bool in
+                    let aStr: AnyObject? = a[2]
+                    let bStr: AnyObject? = b[2]
+                    let ret:Bool = aStr as String > bStr as String
+                    return ret//a[0] > b[0]
+                }//{ $0[self.DATE_STR] as String > $1[self.DATE_STR] as String }
                 
                 for anAsset: Dictionary<Int,AnyObject> in allAssets {
                     let assetDict: NSDictionary = anAsset
@@ -92,9 +98,6 @@ class DateViewController: UICollectionViewController {
                         var asstsArr:Array<ALAsset> = self.assetsData[dateStr]!
                         asstsArr.append(anAsset[self.ASSET] as ALAsset)
                         self.assetsData[dateStr] = asstsArr
-//                        println(asstsArr.count)
-//                        println(self.assetsData[dateStr]!.count)
-//                        println("======")
                     } else {
                         var sectionArray:Array<ALAsset> = []
                         sectionArray.append(anAsset[self.ASSET] as ALAsset)
@@ -171,11 +174,11 @@ class DateViewController: UICollectionViewController {
         var date: String = self.sectionList[indexPath.section]
         var assetArr:Array<ALAsset> = self.assetsData[date]!
         var asset: ALAsset = assetArr[indexPath.row]
-        var img: UIImage = UIImage(CGImage:asset.aspectRatioThumbnail().takeUnretainedValue())
+        var img: UIImage = UIImage(CGImage:asset.thumbnail().takeUnretainedValue())
         var imgView:UIImageView = UIImageView()
         imgView.image = img
 //        imgView.contentMode
-        imgView.frame = CGRectMake(0, 0, 106, 70)
+        imgView.frame = CGRectMake(0, 0, 106, 106 )
         cell.addSubview(imgView)
         
 //        init(CGImage cgImage: CGImage!)

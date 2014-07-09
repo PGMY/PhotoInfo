@@ -4,9 +4,21 @@ import UIKit
 import AssetsLibrary
 
 
+
+
+
+var fomatter = NSDateFormatter()
+fomatter.dateFormat = "yyyy/MM/dd"
+fomatter
+
+
+
+
+
+
 // http://qiita.com/hachinobu/items/d591d0cba23b6dfec559
 // immutableなString型の配列
-let names: String[] = ["name5", "name2", "name1", "name3"]
+let names: [String] = ["name5", "name2", "name1", "name3"]
 
 //各データを取得
 let name1 = names[0] //name5
@@ -38,10 +50,10 @@ programLang.insert("ひまわり", atIndex: 0) // [ひまわり, Objective-C, Ja
 programLang.reverse() // [ひまわり, Objective-C, Java, Swift, Python, Ruby, PHP, Scala, JavaScript]
 
 // 配列内をソート(降順)
-sort(programLang) { $0 > $1 } // [ひまわり, Swift, Scala, Ruby, Python, PHP, Objective-C, JavaScript, Java]
+sort(&programLang) { $0 > $1 } // [ひまわり, Swift, Scala, Ruby, Python, PHP, Objective-C, JavaScript, Java]
 
 // 配列内をソート(昇順)
-sort(programLang) { $0 < $1 } // [Java, JavaScript, Objective-C, PHP, Python, Ruby, Scala, Swift, ひまわり]
+sort(&programLang) { $0 < $1 } // [Java, JavaScript, Objective-C, PHP, Python, Ruby, Scala, Swift, ひまわり]
 
 programLang.count
 
@@ -57,13 +69,37 @@ arr.append([1:"TRE", 2:"FOR"])
 //
 //arr
 
+//ALAssetsGroupAll
 
 //ALAssetsGroupType(ALAssetsGroupAll)
 
 
-var testArr:Array<Dictionary<Int,AnyObject>> = [[0: "ZERO1", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO2", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO3", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO4", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"]]
+var any:AnyObject? = "TEST"
+any as String
 
-for test:Dictionary<Int,AnyObject> in testArr {
+
+
+
+var testArr:Array<Dictionary<Int,String>> = [[0: "ZERO1", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO2", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO3", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"],[0: "ZERO4", 1: "2013-11-02 14:52:00 +0000", 2: "2013/11/02"]]
+
+sort(&testArr) {
+    (a:Dictionary, b:Dictionary) -> Bool in
+    var s = a
+    println(a)
+    println(b)
+    println(a[0])
+    println(b[0])
+    let aStr = a[0]
+    
+    let ret:Bool = a[0] > b[0]
+    println("=====")
+    
+    return a[0] > b[0]
+}
+
+testArr
+
+for test:Dictionary<Int,String> in testArr {
     let td: NSDictionary = test
     let t:String! = td[0] as String
     println(t)
@@ -75,12 +111,6 @@ var dcitD:Array<String> = ["A","B","C"]
 testDict["D"] = dcitD
 
 testDict
-
-
-
-
-
-
 
 
 

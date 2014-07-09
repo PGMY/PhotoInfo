@@ -19,7 +19,7 @@ class MYRootViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        var imageFrame : CGRect = CGRectMake(0, 0, 106, 70)
+        var imageFrame : CGRect = CGRectMake(0, 0, 106, 106)
 //        CGRect imageFrame = CGRectMake(0, 0, 106, 70);
         
         var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
